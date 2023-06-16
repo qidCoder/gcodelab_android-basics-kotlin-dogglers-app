@@ -24,6 +24,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogglers.R
 import com.example.dogglers.const.Layout
+import com.example.dogglers.data.DataSource
 import com.example.dogglers.model.Dog
 
 /**
@@ -32,11 +33,11 @@ import com.example.dogglers.model.Dog
  */
 class DogCardAdapter(
     private val context: Context?,
-    private val layout: Int,
-    private val dataset: List<Dog>
+    private val layout: Int
 ): RecyclerView.Adapter<DogCardAdapter.DogCardViewHolder>() {
 
-    // TODO: Initialize the data using the List found in data/DataSource
+    // Initialize the data using the List found in data/DataSource
+    private val dataset: List<Dog> = DataSource.dogs
 
     /**
      * Initialize view elements
@@ -72,17 +73,19 @@ class DogCardAdapter(
         // Get the data at the current position
         val item = dataset[position]
 
+        val resources = context?.resources
+
         // Set the image resource for the current dog
         holder.image.setImageResource(item.imageResourceId)
         // Set the text for the current dog's name
-        holder.name.text = context?.resources?.getString(item.name.toInt())
-        // TODO: Set the text for the current dog's age
-        holder.age.text = context?.resources?.getString(item.age.toInt())
-        val resources = context?.resources
-        // TODO: Set the text for the current dog's hobbies by passing the hobbies to the
+        holder.name.text = (item.name)
+        // Set the text for the current dog's age
+        holder.age.text = resources?.getString(R.string.dog_age, item.age)
+
+        // Set the text for the current dog's hobbies by passing the hobbies to the
         //  R.string.dog_hobbies string constant.
         //  Passing an argument to the string resource looks like:
         //  resources?.getString(R.string.dog_hobbies, dog.hobbies)
-        holder.hobbies.text = context?.resources?.getString(R.string.dog_hobbies)
+        holder.hobbies.text = resources?.getString(R.string.dog_hobbies, item.hobbies)
     }
 }

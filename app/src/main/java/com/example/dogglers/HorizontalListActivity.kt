@@ -31,12 +31,9 @@ class HorizontalListActivity : AppCompatActivity() {
         binding = ActivityHorizontalListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dataset = DataSource.dogs
-
         binding.horizontalRecyclerView.adapter = DogCardAdapter(
             applicationContext,
-            Layout.HORIZONTAL,
-            dataset
+            Layout.HORIZONTAL
         )
 
         // Specify fixed size to improve performance

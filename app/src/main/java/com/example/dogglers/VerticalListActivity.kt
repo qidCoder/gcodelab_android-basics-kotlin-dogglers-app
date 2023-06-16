@@ -31,12 +31,9 @@ class VerticalListActivity : AppCompatActivity() {
         binding = ActivityVerticalListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dataset = DataSource.dogs
-
         binding.verticalRecyclerView.adapter = DogCardAdapter(
             applicationContext,
-            Layout.VERTICAL,
-            dataset
+            Layout.VERTICAL
         )
 
         // Specify fixed size to improve performance
